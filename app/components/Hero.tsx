@@ -42,7 +42,7 @@ function Hero() {
             </p>
             <Button
               title="see product"
-              href="/product/headphones/1"
+              href="/category/headphones/4"
               color="orange"
             />
           </div>

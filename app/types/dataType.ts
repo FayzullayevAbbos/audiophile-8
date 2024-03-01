@@ -70,9 +70,36 @@ export type SingleProduct = {
   isNew: boolean;
   description: string;
   price: number;
-  productImageData: {
+  imageData: {
     mobile: string;
     tablet: string;
     desktop: string;
   };
+};
+type include = {
+  quantity: number;
+  item: string;
+};
+type galery = {
+  first: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+  second: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+  third: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+};
+export type FeaturesItem = {
+  id: number;
+  feature: string;
+  includes: include[];
+  gallery: galery;
 };

@@ -2,14 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const appSlice = createSlice({
   name: "app",
   initialState: {
-    api: [],
+    itemCount: 1,
   },
   reducers: {
-    setApi: (state, action) => {
-      state.api = action.payload;
+    setItemCount: (state, action) => {
+      state.itemCount = action.payload;
     },
   },
 });
 
-export const { setApi } = appSlice.actions;
+export const { setItemCount } = appSlice.actions;
 export default appSlice.reducer;
