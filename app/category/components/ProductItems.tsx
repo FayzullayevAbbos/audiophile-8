@@ -7,17 +7,19 @@ type ItemProps = {
   itemData: ProductCategoryItem;
   even: boolean;
 };
-function ProductItems({ even, itemData }: any) {
-  const { name, description, previewImageData } = itemData;
+function ProductItems({ even, itemData }: {even:boolean , itemData:ProductCategoryItem}) {
+  const { name, slug, description, imageData } = itemData;
+
+
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-32">
       <div className={`${even ? "lg:order-2" : ""}`}>
         <ResImage
-          alt={previewImageData.alt}
-          mobile={previewImageData.mobile}
-          tablet={previewImageData.tablet}
-          desktop={previewImageData.desktop}
+          alt={''}
+          mobile={imageData.mobile}
+          tablet={imageData.tablet}
+          desktop={imageData.desktop}
         />
       </div>
       <div>
@@ -36,7 +38,7 @@ function ProductItems({ even, itemData }: any) {
           <Button
             title="see product"
             color="orange"
-            href={`/category/${itemData.category}/${itemData.id}`}
+            href={`/category/${itemData.category}/${itemData.slug}`}
           />
         </div>
       </div>

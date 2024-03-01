@@ -55,12 +55,18 @@ export type ResImageProps = {
   tablet: string;
   desktop: string;
 };
+
 export type ProductCategoryItem = {
   id: number;
+  slug: string;
   new: boolean;
   name: string;
   category: string;
-  previewImageData: ResImageProps;
+  imageData: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
   description: string;
 };
 export type SingleProduct = {
@@ -102,4 +108,19 @@ export type FeaturesItem = {
   feature: string;
   includes: include[];
   gallery: galery;
+};
+type Other = {
+  slug: string;
+  name: string;
+  image: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+};
+export type MaybeYouLike = {
+  id: number;
+  slug:string,
+  category: string;
+  others: Other[];
 };

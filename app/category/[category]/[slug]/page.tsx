@@ -4,14 +4,18 @@ import SingleProductTop from "../../components/SingleProductTop";
 import getData from "@/app/hooks/useFetch";
 import FeaturesProduct from "../../components/FeaturesProduct";
 import GalleryImages from "../../components/GalleryImages";
+import YouLike from "../../components/YouLike";
+import Nav from "@/app/components/Nav";
+import ProductsBottom from "@/app/components/ProductsBottom";
+import Footer from "@/app/components/Footer";
 
-async function page({ params }: { params: { id: number } }) {
+async function page({ params }: { params: { slug: string } }) {
   const allProducts = await getData();
-  const { id } = params;
+  const { slug } = params;
 
   function getSinglePro() {
     return allProducts
-      .filter((item) => item.id == id)
+      .filter((item) => item.slug == slug)
       .map((item) => {
         return {
           id: item.id,
@@ -27,7 +31,7 @@ async function page({ params }: { params: { id: number } }) {
 
   function singleFeatures() {
     return allProducts
-      .filter((item) => item.id == id)
+      .filter((item) => item.slug == slug)
       .map((item) => {
         return {
           id: item.id,
@@ -37,10 +41,21 @@ async function page({ params }: { params: { id: number } }) {
         };
       });
   }
-  const features = singleFeatures()
+  function youLike() {
+    return allProducts
+      .filter((item) => item.slug == slug)
+      .map((item) => {
+        return {
+          id: item.id,
+          slug: slug,
+          category: item.category,
+          others: item.others,
+        };
+      });
+  }
+  const mayBeYouLike = youLike();
+  const features = singleFeatures();
   const product = getSinglePro();
-
-  console.log(product, id);
 
   return (
     <div>
@@ -49,6 +64,10 @@ async function page({ params }: { params: { id: number } }) {
       <SingleProductTop product={product} />
       <FeaturesProduct features={features} />
       <GalleryImages features={features} />
+      <YouLike mayBeYouLike={mayBeYouLike} />
+      <Nav type={""} />
+      <ProductsBottom />
+      <Footer />
     </div>
   );
 }

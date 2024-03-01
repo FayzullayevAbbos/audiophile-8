@@ -7,7 +7,7 @@ function GalleryImages({ features }: { features: FeaturesItem[] }) {
       {features.map((item) => {
         return (
           <div className="container mx-auto p-6 md:px-10 gallery-container gap-6">
-            <div className="rounded-lg overflow-hidden gallery-first ">
+            <div className="rounded-lg overflow-hidden gallery1 ">
               <ResImage
                 alt={""}
                 mobile={item.gallery.first.mobile}
@@ -15,7 +15,7 @@ function GalleryImages({ features }: { features: FeaturesItem[] }) {
                 desktop={item.gallery.first.desktop}
               />
             </div>
-            <div className="rounded-lg overflow-hidden gallery-second">
+            <div className="rounded-lg overflow-hidden gallery2">
               <ResImage
                 alt={""}
                 mobile={item.gallery.second.mobile}
@@ -23,7 +23,7 @@ function GalleryImages({ features }: { features: FeaturesItem[] }) {
                 desktop={item.gallery.second.desktop}
               />
             </div>
-            <div className="rounded-lg overflow-hidden gallery-third">
+            <div className="rounded-lg overflow-hidden gallery3">
               <ResImage
                 alt={""}
                 mobile={item.gallery.third.mobile}

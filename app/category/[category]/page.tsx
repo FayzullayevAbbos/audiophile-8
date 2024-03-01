@@ -10,6 +10,7 @@ import ProductsBottom from "@/app/components/ProductsBottom";
 import Footer from "@/app/components/Footer";
 
 async function page({ params }: { params: { category: string } }) {
+
   const allProducts = await getData();
   const products = category(params.category);
 
@@ -19,10 +20,11 @@ async function page({ params }: { params: { category: string } }) {
       .map((item) => {
         return {
           id: item.id,
+          slug:item.slug,
           new: item.new,
           name: item.name,
           category: item.category,
-          previewImageData: item.image,
+          imageData: item.image,
           description: item.description,
         };
       });
