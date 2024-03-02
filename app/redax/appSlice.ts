@@ -1,7 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 type InitialType = {
   itemCount: number;
+  removeItems: boolean;
   productItem: [
+    {
+      slug: string;
+      img: string;
+      name: string;
+      price: number;
+    }
+  ];
+  prevItem: [
     {
       slug: string;
       img: string;
@@ -13,6 +22,7 @@ type InitialType = {
 
 const initialState = {
   itemCount: 1,
+  removeItems: false,
   productItem: [
     {
       slug: "",
@@ -30,8 +40,25 @@ const appSlice = createSlice({
     setItemCount: (state, action) => {
       state.itemCount = action.payload;
     },
+    setRemoveItems: (state, action) => {
+      state.removeItems = action.payload;
+    },
     setProductItem: (state, action) => {
-      state.productItem.push(action.payload);
+      const { slug } = action.payload;
+      const objectExists = state.productItem.some((obj) => obj.slug === slug);
+      if (!objectExists) {
+        state.productItem.push(action.payload);
+      }
+      if (state.removeItems) {
+        state.productItem = [
+          {
+            slug: "",
+            img: "",
+            name: "",
+            price: 0,
+          },
+        ];
+      }
     },
   },
 });
