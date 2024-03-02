@@ -5,9 +5,24 @@ import Header from "./Header";
 
 import { useAppSelector } from "../redax/store";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import {
+  setItemCount,
+  setProductItem,
+  setRemoveItems,
+  setTotalPrice,
+} from "../redax/appSlice";
 
 function ModalCart() {
   const products = useAppSelector((state) => state.productItem);
+  const itemCount = useAppSelector((state) => state.itemCount);
+  const totalPrice = useAppSelector((state) => state.totalPrice);
+  const dispatch = useDispatch();
+  function removeProducts() {
+    dispatch(setRemoveItems(true));
+    dispatch(setProductItem([]));
+  }
+
   let newStr = "";
   return (
     <div className="min-h-svh w-full fixed top-0 left-0 bg-[rgba(0,0,0,0.5)] ">
@@ -15,8 +30,13 @@ function ModalCart() {
       <div className="container p-6 md:px-10 mx-auto relative md:flex md:justify-end">
         <div className="bg-white p-6 rounded-lg w-full max-w-96">
           <div className="flex justify-between">
-            <div className="uppercase text-xl font-bold">Cart (0)</div>
-            <div className=" underline text-secondary-color cursor-pointer">
+            <div className="uppercase text-xl font-bold">
+              Cart ({products.length - 1})
+            </div>
+            <div
+              onClick={() => removeProducts()}
+              className=" underline text-secondary-color cursor-pointer"
+            >
               Remove all
             </div>
           </div>
@@ -25,9 +45,10 @@ function ModalCart() {
               {products?.map((product) => {
                 {
                   newStr = product.img.substring(1);
+                  // dispatch(setTotalPrice(totalPrice + product.price));
                 }
                 return product.img ? (
-                  <li className="flex gap-3 items-center">
+                  <li key={product.name} className="flex gap-3 items-center">
                     <div className="max-w-16 rounded-md overflow-hidden">
                       {product.img ? (
                         <Image
@@ -43,15 +64,25 @@ function ModalCart() {
                     <div className="flex-1">
                       <div className="font-bold">{product.name}</div>
                       <div className="font-bold text-secondary-color">
-                        $ {product.price}
+                        $ {product.price * itemCount}
                       </div>
                     </div>
                     <div className="flex-1 grid grid-cols-3 justify-items-center items-center bg-content-color py-1 font-bold">
-                      <div className="text-secondary-color cursor-pointer hover:text-accent-color">
+                      <div
+                        onClick={() => dispatch(setItemCount(itemCount + 1))}
+                        className="text-secondary-color cursor-pointer hover:text-accent-color"
+                      >
                         +
                       </div>
-                      <div>1</div>
-                      <div className="text-secondary-color cursor-pointer hover:text-accent-color">
+                      <div>{itemCount}</div>
+                      <div
+                        onClick={() =>
+                          itemCount > 1
+                            ? dispatch(setItemCount(itemCount - 1))
+                            : ""
+                        }
+                        className="text-secondary-color cursor-pointer hover:text-accent-color"
+                      >
                         -
                       </div>
                     </div>
@@ -65,7 +96,7 @@ function ModalCart() {
           <div className="mt-6">
             <div className="flex items-center justify-between">
               <span>TOTAL</span>
-              <span className="text-[18px] font-bold">$0</span>
+              <span className="text-[18px] font-bold">${totalPrice}</span>
             </div>
             <div className="mt-6">
               <Link

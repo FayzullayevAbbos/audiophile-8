@@ -3,7 +3,11 @@ import Product, { SingleProduct } from "@/app/types/dataType";
 import ResImage from "./ResImage";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setItemCount, setProductItem } from "@/app/redax/appSlice";
+import {
+  setItemCount,
+  setProductItem,
+  setRemoveItems,
+} from "@/app/redax/appSlice";
 import { AppDispatch, RootState } from "@/app/redax/store";
 
 function SingleProductTop({ product }: { product: SingleProduct[] }) {
@@ -13,27 +17,26 @@ function SingleProductTop({ product }: { product: SingleProduct[] }) {
   const dispatch = useDispatch();
 
   function addToCard(products: SingleProduct) {
-    console.log(products);
+    dispatch(setRemoveItems(false));
 
-    const items = 
-      {
-        slug: products.slug,
-        img: products.imageData.mobile,
-        name: products.name,
-        price: products.price,
-      };
-    
-    
-    dispatch(
-      setProductItem(items)
-    );
+    const items = {
+      slug: products.slug,
+      img: products.imageData.mobile,
+      name: products.name,
+      price: products.price,
+    };
+
+    dispatch(setProductItem(items));
   }
 
   return (
     <div>
-      {product.map((item , index) => {
+      {product.map((item, index) => {
         return (
-          <div key={index} className="container mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-36">
+          <div
+            key={index}
+            className="container mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-36"
+          >
             <div>
               <ResImage
                 alt={""}

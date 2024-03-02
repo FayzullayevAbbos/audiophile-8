@@ -2,15 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 type InitialType = {
   itemCount: number;
   removeItems: boolean;
+  totalPrice: number;
+  proPrice: number;
   productItem: [
-    {
-      slug: string;
-      img: string;
-      name: string;
-      price: number;
-    }
-  ];
-  prevItem: [
     {
       slug: string;
       img: string;
@@ -23,6 +17,8 @@ type InitialType = {
 const initialState = {
   itemCount: 1,
   removeItems: false,
+  totalPrice: 0,
+  proPrice: 0,
   productItem: [
     {
       slug: "",
@@ -60,8 +56,21 @@ const appSlice = createSlice({
         ];
       }
     },
+
+    setTotalPrice: (state, action) => {
+      state.totalPrice = action.payload;
+    },
+    setProPrice: (state, action) => {
+      state.proPrice = action.payload;
+    },
   },
 });
 
-export const { setItemCount, setProductItem } = appSlice.actions;
+export const {
+  setItemCount,
+  setProductItem,
+  setRemoveItems,
+  setTotalPrice,
+  setProPrice,
+} = appSlice.actions;
 export default appSlice.reducer;
