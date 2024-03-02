@@ -71,6 +71,7 @@ export type ProductCategoryItem = {
 };
 export type SingleProduct = {
   id: number;
+  slug:string;
   category: string;
   name: string;
   isNew: boolean;

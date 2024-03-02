@@ -3,18 +3,37 @@ import Product, { SingleProduct } from "@/app/types/dataType";
 import ResImage from "./ResImage";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setItemCount } from "@/app/redax/appSlice";
+import { setItemCount, setProductItem } from "@/app/redax/appSlice";
+import { AppDispatch, RootState } from "@/app/redax/store";
 
 function SingleProductTop({ product }: { product: SingleProduct[] }) {
-  const itemCount = useSelector((state: any) => state.itemCount) as number;
+  const itemCount = useSelector(
+    (state: RootState) => state.itemCount
+  ) as number;
   const dispatch = useDispatch();
-  function addToCard() {}
+
+  function addToCard(products: SingleProduct) {
+    console.log(products);
+
+    const items = 
+      {
+        slug: products.slug,
+        img: products.imageData.mobile,
+        name: products.name,
+        price: products.price,
+      };
+    
+    
+    dispatch(
+      setProductItem(items)
+    );
+  }
 
   return (
     <div>
-      {product.map((item) => {
+      {product.map((item , index) => {
         return (
-          <div className="container mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-36">
+          <div key={index} className="container mx-auto px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-36">
             <div>
               <ResImage
                 alt={""}
@@ -62,7 +81,7 @@ function SingleProductTop({ product }: { product: SingleProduct[] }) {
                 </div>
                 <div
                   className="block text-xs py-3 px-8 bg-[#D87D4A] text-white uppercase tracking-wider cursor-pointer hover:bg-button-orange-hover-color"
-                  onClick={addToCard}
+                  onClick={() => addToCard(item)}
                 >
                   Add to cart
                 </div>

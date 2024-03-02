@@ -10,7 +10,6 @@ import ProductsBottom from "@/app/components/ProductsBottom";
 import Footer from "@/app/components/Footer";
 
 async function page({ params }: { params: { category: string } }) {
-
   const allProducts = await getData();
   const products = category(params.category);
 
@@ -20,7 +19,7 @@ async function page({ params }: { params: { category: string } }) {
       .map((item) => {
         return {
           id: item.id,
-          slug:item.slug,
+          slug: item.slug,
           new: item.new,
           name: item.name,
           category: item.category,
@@ -41,11 +40,7 @@ async function page({ params }: { params: { category: string } }) {
       <div className="container p-6 py-16 md:px-10 md:py-24 lg:py-40 mx-auto grid gap-32">
         {products.map((item, index) => {
           return (
-            <ProductItems
-              key={index}
-              itemData={item}
-              even={(index + 1) % 2 === 0}
-            />
+            <ProductItems key={index} itemData={item} even={index % 2 !== 0} />
           );
         })}
       </div>

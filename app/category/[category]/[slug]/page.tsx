@@ -19,6 +19,7 @@ async function page({ params }: { params: { slug: string } }) {
       .map((item) => {
         return {
           id: item.id,
+          slug:item.slug,
           category: item.category,
           name: item.name,
           isNew: item.new,
@@ -35,6 +36,7 @@ async function page({ params }: { params: { slug: string } }) {
       .map((item) => {
         return {
           id: item.id,
+          
           feature: item.features,
           includes: item.includes,
           gallery: item.gallery,

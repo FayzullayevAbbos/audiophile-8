@@ -18,21 +18,21 @@ export default function ResImage({
         src={mobile1}
         alt={alt}
         width={540}
-        height={560}
+        height={660}
         className="w-full md:hidden"
       />
       <img
         src={tablet1}
         alt={alt}
         width={540}
-        height={560}
+        height={660}
         className="w-full hidden md:block lg:hidden"
       />
       <img
         src={desktop1}
         alt={alt}
         width={540}
-        height={560}
+        height={660}
         className="w-full hidden lg:block"
       />
     </>

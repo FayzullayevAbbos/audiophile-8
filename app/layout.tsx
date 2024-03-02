@@ -8,7 +8,6 @@ import { store } from "./redax/store";
 
 const inter = Inter({ subsets: ["latin"] });
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,10 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body cz-shortcut-listen="true" className={inter.className}>
-        <Header />
-        <Provider store={store}>{children}</Provider>
-      </body>
+      {" "}
+      <Provider store={store}>
+        <body cz-shortcut-listen="true" className={inter.className}>
+          <Header />
+          {children}
+        </body>
+      </Provider>
     </html>
   );
 }

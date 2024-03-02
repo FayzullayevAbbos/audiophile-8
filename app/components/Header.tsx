@@ -3,9 +3,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import Nav from "./Nav";
+import { createPortal } from "react-dom";
+import ModalCart from "./ModalCart";
 
 function Header() {
   const [menu, setMenu] = useState<boolean>(false);
+  const [modal ,setModal] = useState<boolean>(false)
   return (
     <header className="fixed z-20 w-full top-0 left-0 flex flex-col   bg-[#181818]">
       <div className="container mx-auto flex justify-between items-center px-6 py-8 border-b border-gray-800  bg-[#181818]">
@@ -57,7 +60,7 @@ function Header() {
             <Link href="/category/earphones">earphones</Link>
           </li>
         </ul>
-        <div className="w-6 cursor-pointer relative">
+        <div onClick={()=> setModal(!modal)} className="w-6 cursor-pointer relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="23"
@@ -75,6 +78,8 @@ function Header() {
           <div className="w-2 h-2 bg-orange-color rounded-full absolute -right-1 top-0 hidden"></div>
         </div>
       </div>
+      {modal ? createPortal(<ModalCart></ModalCart>, document.body )  : ""}
+      
       {menu ? <Nav type={"navbar"} /> : ""}
     </header>
   );
