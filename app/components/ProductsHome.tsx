@@ -36,7 +36,7 @@ function ProductsHome() {
               truly remarkable sound.
             </p>
             <Button
-              href="/category/speakers/6"
+              href="/category/speakers/zx9-speaker"
               title="see product"
               color="black"
             ></Button>
@@ -70,7 +70,7 @@ function ProductsHome() {
         <div className="product-info flex  flex-col gap-6 justify-center items-start p-6 md:p-16 lg:p-24">
           <h3 className="text-3xl uppercase font-bold">ZX7 speaker</h3>
           <Button
-            href="/category/speakers/5"
+            href="/category/speakers/zx7-speaker"
             title="see product"
             color="stroke"
           />
@@ -103,7 +103,7 @@ function ProductsHome() {
         <div className="product-divide-info bg-content-color p-8 lg:pl-20 pt-10 flex flex-col justify-center gap-8 lg:gap-10 items-start rounded-md">
           <h3 className="text-3xl uppercase font-bold">YX1 earphones</h3>
           <Button
-            href="/category/earphones/1"
+            href="/category/earphones"
             title="see product"
             color="stroke"
           />

@@ -13,7 +13,7 @@ import {
   setTotalPrice,
 } from "../redax/appSlice";
 
-function ModalCart() {
+function ModalCart({setModal}:any) {
   const products = useAppSelector((state) => state.productItem);
   const itemCount = useAppSelector((state) => state.itemCount);
   const totalPrice = useAppSelector((state) => state.totalPrice);
@@ -100,7 +100,8 @@ function ModalCart() {
             </div>
             <div className="mt-6">
               <Link
-                href={"/"}
+                href={"/checkout"}
+                onClick={()=> setModal(false)}
                 className=" text-center block text-xs py-3 px-8 bg-[#D87D4A] text-white uppercase tracking-wider cursor-pointer hover:bg-button-orange-hover-color"
               >
                 checkout

@@ -78,7 +78,7 @@ function Header() {
           <div className="w-2 h-2 bg-orange-color rounded-full absolute -right-1 top-0 hidden"></div>
         </div>
       </div>
-      {modal ? createPortal(<ModalCart></ModalCart>, document.body )  : ""}
+      {modal ? createPortal(<ModalCart setModal={setModal}></ModalCart>, document.body )  : ""}
       
       {menu ? <Nav type={"navbar"} /> : ""}
     </header>
