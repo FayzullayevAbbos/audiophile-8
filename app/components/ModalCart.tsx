@@ -13,7 +13,7 @@ import {
   setTotalPrice,
 } from "../redax/appSlice";
 
-function ModalCart({setModal}:any) {
+function ModalCart({ setModal }: any) {
   const products = useAppSelector((state) => state.productItem);
   const itemCount = useAppSelector((state) => state.itemCount);
   const totalPrice = useAppSelector((state) => state.totalPrice);
@@ -44,15 +44,13 @@ function ModalCart({setModal}:any) {
             <ul className="grid gap-8">
               {products?.map((product) => {
                 {
-                  newStr = product.img.substring(1);
-                  // dispatch(setTotalPrice(totalPrice + product.price));
                 }
                 return product.img ? (
                   <li key={product.name} className="flex gap-3 items-center">
                     <div className="max-w-16 rounded-md overflow-hidden">
                       {product.img ? (
                         <Image
-                          src={newStr}
+                          src={product.img}
                           width={64}
                           height={64}
                           alt=""
@@ -64,27 +62,11 @@ function ModalCart({setModal}:any) {
                     <div className="flex-1">
                       <div className="font-bold">{product.name}</div>
                       <div className="font-bold text-secondary-color">
-                        $ {product.price * itemCount}
+                        $ {product.price}
                       </div>
                     </div>
-                    <div className="flex-1 grid grid-cols-3 justify-items-center items-center bg-content-color py-1 font-bold">
-                      <div
-                        onClick={() => dispatch(setItemCount(itemCount + 1))}
-                        className="text-secondary-color cursor-pointer hover:text-accent-color"
-                      >
-                        +
-                      </div>
-                      <div>{itemCount}</div>
-                      <div
-                        onClick={() =>
-                          itemCount > 1
-                            ? dispatch(setItemCount(itemCount - 1))
-                            : ""
-                        }
-                        className="text-secondary-color cursor-pointer hover:text-accent-color"
-                      >
-                        -
-                      </div>
+                    <div className="text-[16px] font-bold opacity-[0.5]">
+                      x{product.count}
                     </div>
                   </li>
                 ) : (
@@ -101,7 +83,7 @@ function ModalCart({setModal}:any) {
             <div className="mt-6">
               <Link
                 href={"/checkout"}
-                onClick={()=> setModal(false)}
+                onClick={() => setModal(false)}
                 className=" text-center block text-xs py-3 px-8 bg-[#D87D4A] text-white uppercase tracking-wider cursor-pointer hover:bg-button-orange-hover-color"
               >
                 checkout

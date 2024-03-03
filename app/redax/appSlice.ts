@@ -4,9 +4,11 @@ type InitialType = {
   removeItems: boolean;
   totalPrice: number;
   proPrice: number;
+  radio: boolean;
   productItem: [
     {
       slug: string;
+      count:number;
       img: string;
       name: string;
       price: number;
@@ -18,10 +20,13 @@ const initialState = {
   itemCount: 1,
   removeItems: false,
   totalPrice: 0,
+
   proPrice: 0,
+  radio: false,
   productItem: [
     {
       slug: "",
+      count:0,
       img: "",
       name: "",
       price: 0,
@@ -49,6 +54,7 @@ const appSlice = createSlice({
         state.productItem = [
           {
             slug: "",
+            count:0,
             img: "",
             name: "",
             price: 0,
@@ -63,6 +69,9 @@ const appSlice = createSlice({
     setProPrice: (state, action) => {
       state.proPrice = action.payload;
     },
+    setRadio: (state, action) => {
+      state.radio = action.payload;
+    },
   },
 });
 
@@ -72,5 +81,6 @@ export const {
   setRemoveItems,
   setTotalPrice,
   setProPrice,
+  setRadio,
 } = appSlice.actions;
 export default appSlice.reducer;

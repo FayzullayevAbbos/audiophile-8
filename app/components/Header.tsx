@@ -5,10 +5,12 @@ import React, { useState } from "react";
 import Nav from "./Nav";
 import { createPortal } from "react-dom";
 import ModalCart from "./ModalCart";
+import { useAppSelector } from "../redax/store";
 
 function Header() {
+  const products = useAppSelector((state) => state.productItem);
   const [menu, setMenu] = useState<boolean>(false);
-  const [modal ,setModal] = useState<boolean>(false)
+  const [modal, setModal] = useState<boolean>(false);
   return (
     <header className="fixed z-20 w-full top-0 left-0 flex flex-col   bg-[#181818]">
       <div className="container mx-auto flex justify-between items-center px-6 py-8 border-b border-gray-800  bg-[#181818]">
@@ -60,7 +62,10 @@ function Header() {
             <Link href="/category/earphones">earphones</Link>
           </li>
         </ul>
-        <div onClick={()=> setModal(!modal)} className="w-6 cursor-pointer relative">
+        <div
+          onClick={() => setModal(!modal)}
+          className="w-6 cursor-pointer relative"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="23"
@@ -75,11 +80,22 @@ function Header() {
               fill="white"
             />
           </svg>
-          <div className="w-2 h-2 bg-orange-color rounded-full absolute -right-1 top-0 hidden"></div>
+          <div
+            className={`text-[11px] px-1 bg-[#D87D4A] rounded-full absolute -right-1 -top-3 ${
+              products.length > 1 ? "block" : "hidden"
+            }`}
+          >
+            {products.length - 1}
+          </div>
         </div>
       </div>
-      {modal ? createPortal(<ModalCart setModal={setModal}></ModalCart>, document.body )  : ""}
-      
+      {modal
+        ? createPortal(
+            <ModalCart setModal={setModal}></ModalCart>,
+            document.body
+          )
+        : ""}
+
       {menu ? <Nav type={"navbar"} /> : ""}
     </header>
   );

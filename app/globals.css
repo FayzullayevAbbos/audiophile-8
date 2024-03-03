@@ -104,3 +104,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+input[type="radio"] {
+  accent-color: #d87d4a;
+}
+.flow > * + * {
+  margin-top: 1rem;
+}

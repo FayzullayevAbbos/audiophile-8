@@ -8,28 +8,27 @@ export default function ResImage({
   desktop,
   alt,
 }: ResImageProps) {
-  let mobile1 = mobile.substring(1);
-  let tablet1 = mobile.substring(1);
-  let desktop1 = mobile.substring(1);
-
+  
+ 
+  
   return (
     <>
-      <Image
-        src={mobile1}
+      <img
+        src={mobile}
         alt={alt}
         width={540}
         height={660}
         className="w-full md:hidden"
       />
       <img
-        src={tablet1}
+        src={tablet}
         alt={alt}
         width={540}
         height={660}
         className="w-full hidden md:block lg:hidden"
       />
       <img
-        src={desktop1}
+        src={desktop}
         alt={alt}
         width={540}
         height={660}
