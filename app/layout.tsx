@@ -20,6 +20,7 @@ export default function RootLayout({
         <body cz-shortcut-listen="true" className={inter.className}>
           <Header />
           {children}
+          
         </body>
       </Provider>
     </html>

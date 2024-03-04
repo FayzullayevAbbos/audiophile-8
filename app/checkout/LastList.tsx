@@ -1,6 +1,7 @@
 "use client";
 import { useAppSelector } from "@/app/redax/store";
 import Image from "next/image";
+import Link from "next/link";
 
 function LastList() {
   const products = useAppSelector((state) => state.productItem);
@@ -84,7 +85,7 @@ function LastList() {
             type="submit"
             className="mt-8 w-full text-center text-xs py-3 px-8 bg-[#D87D4A] text-white uppercase tracking-wider cursor-pointer hover:bg-[#FBAF85]"
           >
-            continue & pay
+            <Link href={"/"}>continue & pay</Link>
           </button>
         </div>
       </div>

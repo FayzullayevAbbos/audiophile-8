@@ -35,7 +35,11 @@ function ModalCart({ setModal }: any) {
         return { ...product };
       })
     );
-    dispatch(setProductItem(newProduct[0]));
+    let checkArr = newProduct[0].some((obj) => obj.count < 1);
+    let as = newProduct[0].filter((product) => product.count >= 1);
+    console.log(as);
+
+    dispatch(setProductItem(checkArr ? as : newProduct[0]));
   }
   function plasCount(slug: string) {
     const newArr = [...products];
@@ -71,7 +75,13 @@ function ModalCart({ setModal }: any) {
         <div className="bg-white p-6 rounded-lg w-full max-w-96">
           <div className="flex justify-between">
             <div className="uppercase text-xl font-bold">
-              Cart ({products.length - 1})
+              Cart (
+              {products[0]?.slug
+                ? products.length
+                : products.length
+                ? products.length - 1
+                : 0}
+              )
             </div>
             <div
               onClick={() => removeProducts()}
@@ -114,9 +124,7 @@ function ModalCart({ setModal }: any) {
                       </div>
                       <div>{product.count}</div>
                       <div
-                        onClick={() =>
-                          product.count > 1 ? minusCount(product.slug) : ""
-                        }
+                        onClick={() => minusCount(product.slug)}
                         className="text-secondary-color cursor-pointer hover:text-accent-color"
                       >
                         -
@@ -136,11 +144,9 @@ function ModalCart({ setModal }: any) {
             </div>
             <div className="mt-6">
               <Link
-                href={`${products.length > 1 ? "/checkout" : ""}`}
+                href={"/checkout"}
                 onClick={() => setModal(false)}
-                className={` text-center block text-xs py-3 px-8 ${
-                  products.length > 1 ? "bg-[#D87D4A]" : "bg-[#FBAF85]"
-                } text-white uppercase tracking-wider cursor-pointer hover:bg-button-orange-hover-color`}
+                className={` text-center block text-xs py-3 px-8 ${"bg-[#D87D4A]"} text-white uppercase tracking-wider cursor-pointer hover:bg-button-orange-hover-color`}
               >
                 checkout
               </Link>
