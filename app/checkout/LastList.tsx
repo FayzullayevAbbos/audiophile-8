@@ -4,6 +4,17 @@ import Image from "next/image";
 
 function LastList() {
   const products = useAppSelector((state) => state.productItem);
+  function totalAll(a: any) {
+    let arr = [...a];
+    let total = 0;
+
+    arr.forEach((obj) => {
+      total += obj.count * obj.price;
+    });
+
+    return total;
+  }
+  const total = totalAll(products);
 
   return (
     <>
@@ -45,11 +56,11 @@ function LastList() {
         <div className="mt-8 grid gap-3">
           <div className="flex justify-between items-center">
             <div className="text-secondary-color uppercase">total</div>
-            <div className="font-bold text-xl">${"total"}</div>
+            <div className="font-bold text-xl">${total}</div>
           </div>
           <div className="flex justify-between items-center">
             <div className="text-secondary-color uppercase">shipping</div>
-            <div className="font-bold text-xl">${50}</div>
+            <div className="font-bold text-xl">${total ? 50 : 0} </div>
           </div>
           <div className="flex justify-between items-center">
             <div className="text-secondary-color uppercase">VAT(included)</div>
@@ -61,7 +72,7 @@ function LastList() {
         <div className="flex justify-between items-center mt-8">
           <div className="text-secondary-color uppercase">Grand Total</div>
           <div className="font-bold text-xl text-accent-color">
-            ${/* {total + shippingPrice}/ */}0
+            ${total ? total + 50 : 0}
           </div>
         </div>
 

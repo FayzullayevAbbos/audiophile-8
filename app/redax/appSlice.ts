@@ -26,6 +26,7 @@ const initialState = {
   productItem: [
     {
       slug: "",
+      total:0,
       count: 0,
       img: "",
       name: "",
@@ -61,6 +62,7 @@ const appSlice = createSlice({
         state.productItem = [
           {
             slug: "",
+            total:0,
             count: 0,
             img: "",
             name: "",

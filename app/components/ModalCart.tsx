@@ -52,6 +52,18 @@ function ModalCart({ setModal }: any) {
 
     dispatch(setProductItem(newProduct[0]));
   }
+  function totalAll(a: any) {
+    let arr = [...a];
+    let total = 0;
+
+    arr.forEach((obj) => {
+      total += obj.count * obj.price;
+    });
+
+    return total;
+  }
+  const total = totalAll(products);
+
   return (
     <div className="min-h-svh w-full fixed top-0 left-0 bg-[rgba(0,0,0,0.5)] ">
       <Boshliqga />
@@ -120,13 +132,15 @@ function ModalCart({ setModal }: any) {
           <div className="mt-6">
             <div className="flex items-center justify-between">
               <span>TOTAL</span>
-              <span className="text-[18px] font-bold">${totalPrice}</span>
+              <span className="text-[18px] font-bold">${total}</span>
             </div>
             <div className="mt-6">
               <Link
                 href={`${products.length > 1 ? "/checkout" : ""}`}
                 onClick={() => setModal(false)}
-                className={` text-center block text-xs py-3 px-8 ${products.length > 1 ? 'bg-[#D87D4A]' : 'bg-[#FBAF85]'} text-white uppercase tracking-wider cursor-pointer hover:bg-button-orange-hover-color`}
+                className={` text-center block text-xs py-3 px-8 ${
+                  products.length > 1 ? "bg-[#D87D4A]" : "bg-[#FBAF85]"
+                } text-white uppercase tracking-wider cursor-pointer hover:bg-button-orange-hover-color`}
               >
                 checkout
               </Link>
