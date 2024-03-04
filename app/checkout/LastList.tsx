@@ -91,7 +91,7 @@ function LastList() {
           <button
             type="submit"
             onClick={() =>
-              total && impEmal && impNumber && impText ? setCheck(true) : ""
+              total && impEmal  ? setCheck(true) : ""
             }
             className="mt-8 w-full text-center text-xs py-3 px-8 bg-[#D87D4A] text-white uppercase tracking-wider cursor-pointer hover:bg-[#FBAF85]"
           >

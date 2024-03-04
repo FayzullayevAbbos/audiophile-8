@@ -20,8 +20,8 @@ function InputText({
         // onChange={(e) => updateField(e.target.value)}
         type="text"
         required
-        value={impText}
-        onChange={(e)=> dispatch(setImpText(e.target.value))}
+        // value={impText}
+        // onChange={(e)=> dispatch(setImpText(e.target.value))}
         placeholder={placeholder}
         className={`border font-bold rounded-md block w-full px-5 py-3 mt-2`}
       />
