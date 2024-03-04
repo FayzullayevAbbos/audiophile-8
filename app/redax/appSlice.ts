@@ -8,7 +8,7 @@ type InitialType = {
   productItem: [
     {
       slug: string;
-      count:number;
+      count: number;
       img: string;
       name: string;
       price: number;
@@ -26,7 +26,7 @@ const initialState = {
   productItem: [
     {
       slug: "",
-      count:0,
+      count: 0,
       img: "",
       name: "",
       price: 0,
@@ -46,15 +46,22 @@ const appSlice = createSlice({
     },
     setProductItem: (state, action) => {
       const { slug } = action.payload;
-      const objectExists = state.productItem.some((obj) => obj.slug === slug);
+      
+      
+
+      const objectExists = state.productItem.some(
+        (obj) => obj.slug == action.payload.slug
+      );
+      console.log(objectExists);
+
       if (!objectExists) {
-        state.productItem.push(action.payload);
+        state.productItem = action.payload;
       }
       if (state.removeItems) {
         state.productItem = [
           {
             slug: "",
-            count:0,
+            count: 0,
             img: "",
             name: "",
             price: 0,

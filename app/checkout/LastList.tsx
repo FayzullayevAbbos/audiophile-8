@@ -4,7 +4,6 @@ import Image from "next/image";
 
 function LastList() {
   const products = useAppSelector((state) => state.productItem);
-  console.log(products);
 
   return (
     <>
@@ -50,7 +49,7 @@ function LastList() {
           </div>
           <div className="flex justify-between items-center">
             <div className="text-secondary-color uppercase">shipping</div>
-            <div className="font-bold text-xl">${"shippingPrice"}</div>
+            <div className="font-bold text-xl">${50}</div>
           </div>
           <div className="flex justify-between items-center">
             <div className="text-secondary-color uppercase">VAT(included)</div>

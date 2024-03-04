@@ -63,7 +63,7 @@ function Header() {
           </li>
         </ul>
         <div
-          onClick={() => setModal(!modal)}
+          onClick={() =>  setModal(!modal)}
           className="w-6 cursor-pointer relative"
         >
           <svg

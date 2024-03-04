@@ -1,5 +1,5 @@
 "use client";
-import Product, { SingleProduct } from "@/app/types/dataType";
+import Product, { ModalPro, SingleProduct } from "@/app/types/dataType";
 import ResImage from "./ResImage";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,27 +8,37 @@ import {
   setProductItem,
   setRemoveItems,
 } from "@/app/redax/appSlice";
-import { AppDispatch, RootState } from "@/app/redax/store";
+import { AppDispatch, RootState, useAppSelector } from "@/app/redax/store";
 
 function SingleProductTop({ product }: { product: SingleProduct[] }) {
-  const [count , setCount] = useState(1)
+  const [count, setCount] = useState(1);
+  const modalPro = useAppSelector((state) => state.productItem);
   const itemCount = useSelector(
     (state: RootState) => state.itemCount
   ) as number;
   const dispatch = useDispatch();
+  const newArr = [...modalPro];
 
-  function addToCard(products: SingleProduct ,count:number) {
+  function addToCard(products: SingleProduct, count: number) {
     dispatch(setRemoveItems(false));
+    const slugs1 = newArr.map((obj) => obj.slug);
+    console.log(slugs1);
 
-    const items = {
+    const items: any = {
       slug: products.slug,
-      count:count,
+      count: count,
       img: products.imageData.mobile,
       name: products.name,
       price: products.price,
     };
 
-    dispatch(setProductItem(items));
+    let isNew = slugs1.some((slug) => slug === items.slug);
+    
+    
+    if (!isNew) {
+      newArr.push(items);
+      dispatch(setProductItem(newArr));
+    }
   }
 
   return (
@@ -68,9 +78,7 @@ function SingleProductTop({ product }: { product: SingleProduct[] }) {
                 <div className="flex w-5/12 bg-content-color font-bold">
                   <div
                     className="flex-1 flex justify-center items-center text-secondary-color cursor-pointer hover:text-accent-color"
-                    onClick={() =>
-                      itemCount > 1 ? setCount(count - 1) : ""
-                    }
+                    onClick={() => (itemCount > 1 ? setCount(count - 1) : "")}
                   >
                     -
                   </div>
@@ -86,7 +94,7 @@ function SingleProductTop({ product }: { product: SingleProduct[] }) {
                 </div>
                 <div
                   className="block text-xs py-3 px-8 bg-[#D87D4A] text-white uppercase tracking-wider cursor-pointer hover:bg-button-orange-hover-color"
-                  onClick={() => addToCard(item , count)}
+                  onClick={() => addToCard(item, count)}
                 >
                   Add to cart
                 </div>

@@ -69,9 +69,17 @@ export type ProductCategoryItem = {
   };
   description: string;
 };
+export type ModalPro = {
+  slug: string;
+  count: number;
+  img: string;
+  name: string;
+  price: number;
+};
 export type SingleProduct = {
   id: number;
-  slug:string;
+
+  slug: string;
   category: string;
   name: string;
   isNew: boolean;
@@ -121,7 +129,7 @@ type Other = {
 };
 export type MaybeYouLike = {
   id: number;
-  slug:string,
+  slug: string;
   category: string;
   others: Other[];
 };

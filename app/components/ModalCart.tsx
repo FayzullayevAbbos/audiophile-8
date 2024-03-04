@@ -12,6 +12,7 @@ import {
   setRemoveItems,
   setTotalPrice,
 } from "../redax/appSlice";
+import { ModalPro } from "../types/dataType";
 
 function ModalCart({ setModal }: any) {
   const products = useAppSelector((state) => state.productItem);
@@ -23,7 +24,34 @@ function ModalCart({ setModal }: any) {
     dispatch(setProductItem([]));
   }
 
-  let newStr = "";
+  function minusCount(slug: string) {
+    const newArr = [...products];
+    const newProduct = [];
+    newProduct.push(
+      newArr.map((product: ModalPro) => {
+        if (product.slug == slug) {
+          return { ...product, count: product.count - 1 };
+        }
+        return { ...product };
+      })
+    );
+    dispatch(setProductItem(newProduct[0]));
+  }
+  function plasCount(slug: string) {
+    const newArr = [...products];
+    const newProduct = [];
+    newProduct.push(
+      newArr.map((product: ModalPro) => {
+        if (product.slug == slug) {
+          return { ...product, count: product.count + 1 };
+        }
+        return { ...product };
+      })
+    );
+    console.log(newProduct[0]);
+
+    dispatch(setProductItem(newProduct[0]));
+  }
   return (
     <div className="min-h-svh w-full fixed top-0 left-0 bg-[rgba(0,0,0,0.5)] ">
       <Boshliqga />
@@ -65,8 +93,22 @@ function ModalCart({ setModal }: any) {
                         $ {product.price}
                       </div>
                     </div>
-                    <div className="text-[16px] font-bold opacity-[0.5]">
-                      x{product.count}
+                    <div className="flex-1 grid grid-cols-3 justify-items-center items-center bg-content-color py-1 font-bold">
+                      <div
+                        onClick={() => plasCount(product.slug)}
+                        className="text-secondary-color cursor-pointer hover:text-accent-color"
+                      >
+                        +
+                      </div>
+                      <div>{product.count}</div>
+                      <div
+                        onClick={() =>
+                          product.count > 1 ? minusCount(product.slug) : ""
+                        }
+                        className="text-secondary-color cursor-pointer hover:text-accent-color"
+                      >
+                        -
+                      </div>
                     </div>
                   </li>
                 ) : (
@@ -82,9 +124,9 @@ function ModalCart({ setModal }: any) {
             </div>
             <div className="mt-6">
               <Link
-                href={"/checkout"}
+                href={`${products.length > 1 ? "/checkout" : ""}`}
                 onClick={() => setModal(false)}
-                className=" text-center block text-xs py-3 px-8 bg-[#D87D4A] text-white uppercase tracking-wider cursor-pointer hover:bg-button-orange-hover-color"
+                className={` text-center block text-xs py-3 px-8 ${products.length > 1 ? 'bg-[#D87D4A]' : 'bg-[#FBAF85]'} text-white uppercase tracking-wider cursor-pointer hover:bg-button-orange-hover-color`}
               >
                 checkout
               </Link>

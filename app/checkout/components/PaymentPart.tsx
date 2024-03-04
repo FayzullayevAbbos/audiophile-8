@@ -5,8 +5,7 @@ import InputText from "./InputText";
 import { RootState, useAppSelector } from "@/app/redax/store";
 
 function PaymentPart() {
-  const radio = useAppSelector((state:RootState) => state.radio);
-  console.log(radio);
+  const radio = useAppSelector((state: RootState) => state.radio);
 
   return (
     <div className="mt-10">
