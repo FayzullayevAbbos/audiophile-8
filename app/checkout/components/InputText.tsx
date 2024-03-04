@@ -3,10 +3,9 @@ import React from "react";
 function InputText({
   placeholder,
   label,
-}: {
-  placeholder: string;
-  label: string;
-}) {
+  impText,
+  setImpText,
+}:any) {
   return (
     <div>
       <div className="flex justify-between text-xs font-bold">
@@ -16,6 +15,8 @@ function InputText({
         // onChange={(e) => updateField(e.target.value)}
         type="text"
         required
+        value={impText}
+        onChange={(e)=> setImpText(e.target.value)}
         placeholder={placeholder}
         className={`border font-bold rounded-md block w-full px-5 py-3 mt-2`}
       />

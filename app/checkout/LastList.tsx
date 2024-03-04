@@ -6,7 +6,7 @@ import CheckModal from "./components/CheckModal";
 import { createPortal } from "react-dom";
 import { useState } from "react";
 
-function LastList({setCheck , check}:any) {
+function LastList({setCheck , check , impEmal , impNumber , impText}:any) {
   
   const products = useAppSelector((state) => state.productItem);
   function totalAll(a: any) {
@@ -87,7 +87,7 @@ function LastList({setCheck , check}:any) {
         <div className="w-full">
           <button
           type="submit"
-            onClick={() => (total ? setCheck(true) : "")}
+            onClick={() => (total && impEmal && impNumber && impText ? setCheck(true) : "")}
             className="mt-8 w-full text-center text-xs py-3 px-8 bg-[#D87D4A] text-white uppercase tracking-wider cursor-pointer hover:bg-[#FBAF85]"
           >
             continue & pay

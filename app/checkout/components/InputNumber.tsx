@@ -1,17 +1,12 @@
-function InputNumber({
-  placeholder,
-  label,
-}: {
-  placeholder: string;
-  label: string;
-}) {
+function InputNumber({ placeholder, label, impNumber, setImpNumber }: any) {
   return (
     <div>
       <div className="flex justify-between text-xs font-bold">
         <label>{label}</label>
       </div>
       <input
-        // onChange={(e) => updateField(e.target.value)}
+        value={impNumber}
+        onChange={(e) => setImpNumber(e.target.value)}
         type="number"
         required
         placeholder={placeholder}
