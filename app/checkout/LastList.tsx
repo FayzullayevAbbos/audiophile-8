@@ -6,8 +6,8 @@ import CheckModal from "./components/CheckModal";
 import { createPortal } from "react-dom";
 import { useState } from "react";
 
-function LastList() {
-  const [check, setCheck] = useState(false);
+function LastList({setCheck , check}:any) {
+  
   const products = useAppSelector((state) => state.productItem);
   function totalAll(a: any) {
     let arr = [...a];
@@ -86,6 +86,7 @@ function LastList() {
 
         <div className="w-full">
           <button
+          type="submit"
             onClick={() => (total ? setCheck(true) : "")}
             className="mt-8 w-full text-center text-xs py-3 px-8 bg-[#D87D4A] text-white uppercase tracking-wider cursor-pointer hover:bg-[#FBAF85]"
           >
