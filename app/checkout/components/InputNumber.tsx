@@ -13,7 +13,7 @@ function InputNumber({ placeholder, label }: any) {
         <label>{label}</label>
       </div>
       <input
-        value={impNumber}
+        value={impNumber == 0 ? "" : impNumber}
         onChange={(e) => dispatch(setImpNumber(e.target.value))}
         type="number"
         required
