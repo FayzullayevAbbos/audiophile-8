@@ -1,3 +1,4 @@
+"use client"
 import InputEmail from "./InputEmail";
 import InputNumber from "./InputNumber";
 import InputText from "./InputText";

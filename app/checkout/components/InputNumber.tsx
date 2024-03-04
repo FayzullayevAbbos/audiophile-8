@@ -1,3 +1,4 @@
+"use client"
 function InputNumber({ placeholder, label, impNumber, setImpNumber }: any) {
   return (
     <div>
