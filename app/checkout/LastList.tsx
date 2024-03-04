@@ -2,6 +2,8 @@
 import { useAppSelector } from "@/app/redax/store";
 import Image from "next/image";
 import Link from "next/link";
+import CheckModal from "./components/CheckModal";
+import { createPortal } from "react-dom";
 
 function LastList() {
   const products = useAppSelector((state) => state.productItem);
@@ -19,6 +21,7 @@ function LastList() {
 
   return (
     <>
+     {createPortal(<CheckModal/> , document.body)}
       <div className="bg-white p-6 py-8 rounded-lg lg:self-start">
         <h3 className="font-bold text-xl uppercase">Summary</h3>
         <div className="mt-8">

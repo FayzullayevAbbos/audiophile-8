@@ -37,7 +37,7 @@ function ModalCart({ setModal }: any) {
     );
     let checkArr = newProduct[0].some((obj) => obj.count < 1);
     let as = newProduct[0].filter((product) => product.count >= 1);
-    console.log(as);
+    
 
     dispatch(setProductItem(checkArr ? as : newProduct[0]));
   }
@@ -52,7 +52,6 @@ function ModalCart({ setModal }: any) {
         return { ...product };
       })
     );
-    console.log(newProduct[0]);
 
     dispatch(setProductItem(newProduct[0]));
   }

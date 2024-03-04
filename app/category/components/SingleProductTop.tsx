@@ -22,7 +22,6 @@ function SingleProductTop({ product }: { product: SingleProduct[] }) {
   function addToCard(products: SingleProduct, count: number) {
     dispatch(setRemoveItems(false));
     const slugs1 = newArr.map((obj) => obj.slug);
-    console.log(slugs1);
 
     const items: any = {
       slug: products.slug,
@@ -33,8 +32,7 @@ function SingleProductTop({ product }: { product: SingleProduct[] }) {
     };
 
     let isNew = slugs1.some((slug) => slug === items.slug);
-    
-    
+
     if (!isNew) {
       newArr.push(items);
       dispatch(setProductItem(newArr));

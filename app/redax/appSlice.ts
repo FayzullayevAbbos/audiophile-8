@@ -53,7 +53,7 @@ const appSlice = createSlice({
       const objectExists = state.productItem.some(
         (obj) => obj.slug == action.payload.slug
       );
-      console.log(objectExists);
+      
 
       if (!objectExists) {
         state.productItem = action.payload;
