@@ -4,8 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import CheckModal from "./components/CheckModal";
 import { createPortal } from "react-dom";
+import { useState } from "react";
 
 function LastList() {
+  const [check, setCheck] = useState(false);
   const products = useAppSelector((state) => state.productItem);
   function totalAll(a: any) {
     let arr = [...a];
@@ -21,7 +23,9 @@ function LastList() {
 
   return (
     <>
-     {createPortal(<CheckModal/> , document.body)}
+      {check
+        ? createPortal(<CheckModal setCheck={setCheck} />, document.body)
+        : ""}
       <div className="bg-white p-6 py-8 rounded-lg lg:self-start">
         <h3 className="font-bold text-xl uppercase">Summary</h3>
         <div className="mt-8">
@@ -80,15 +84,12 @@ function LastList() {
           </div>
         </div>
 
-        <div
-          //   onClickCapture={payCheckout}
-          className="w-full"
-        >
+        <div className="w-full">
           <button
-            type="submit"
+            onClick={() => (total ? setCheck(true) : "")}
             className="mt-8 w-full text-center text-xs py-3 px-8 bg-[#D87D4A] text-white uppercase tracking-wider cursor-pointer hover:bg-[#FBAF85]"
           >
-            <Link href={"/"}>continue & pay</Link>
+            continue & pay
           </button>
         </div>
       </div>

@@ -17,7 +17,7 @@ function Radio({ name, label }: { name: string; label: string }) {
               name={name}
               checked={radio ? false : true}
               value={"true"}
-              className=" absolute bg-[#D87D4A]"
+              className=" absolute  bg-[#D87D4A]"
               type="radio"
             />
           </div>
