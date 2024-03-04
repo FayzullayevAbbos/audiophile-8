@@ -8,26 +8,26 @@ export default function ResImage({
   desktop,
   alt,
 }: ResImageProps) {
-  
- 
-  
   return (
     <>
-      <img
+      <Image
+        key={"aspdlsd"}
         src={mobile}
         alt={alt}
         width={540}
         height={660}
         className="w-full md:hidden"
       />
-      <img
+      <Image
+        key={"aspdlads"}
         src={tablet}
         alt={alt}
         width={540}
         height={660}
         className="w-full hidden md:block lg:hidden"
       />
-      <img
+      <Image
+        key={"aspdsd  "}
         src={desktop}
         alt={alt}
         width={540}

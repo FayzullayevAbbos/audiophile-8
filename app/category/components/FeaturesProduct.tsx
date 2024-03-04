@@ -5,7 +5,7 @@ function FeaturesProduct({ features }: { features: FeaturesItem[] }) {
     <div className="mt-24 lg:mt-32">
       {features.map((item) => {
         return (
-          <div className="container p-6 md:px-10 mx-auto grid grid-cols-1 lg:grid-cols-5 gap-16 md:gap-20 lg:gap-32">
+          <div key={item.feature} className="container p-6 md:px-10 mx-auto grid grid-cols-1 lg:grid-cols-5 gap-16 md:gap-20 lg:gap-32">
             <div className="lg:col-span-3 grid gap-8">
               <h3 className="text-3xl font-bold uppercase">Features</h3>
               <div className="text-secondary-color grid gap-6 font-medium">

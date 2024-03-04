@@ -80,7 +80,7 @@ function Footer() {
                     href={item.href}
                     className="w-6 h-6 block hover:bg-orange-color active:bg-orange-color footer-share-icon"
                   >
-                    <img src={item.icon} alt="" />
+                    <Image width={20} height={20} src={item.icon} alt="" />
                     <span className="hidden">{item.title}</span>
                   </Link>
                 </li>
