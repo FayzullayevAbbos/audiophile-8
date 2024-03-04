@@ -1,9 +1,9 @@
 "use client";
-function Form({ children, setCheck }: any) {
+function Form({ children }: any) {
   return (
     <form
       onSubmit={(e) => {
-        setCheck(false);
+       
         e.preventDefault();
       }}
     >

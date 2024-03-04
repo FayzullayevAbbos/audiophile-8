@@ -1,5 +1,12 @@
 "use client"
-function InputNumber({ placeholder, label, impNumber, setImpNumber }: any) {
+
+import { setImpNumber } from "@/app/redax/appSlice";
+import { useAppSelector } from "@/app/redax/store";
+import { useDispatch } from "react-redux";
+
+function InputNumber({ placeholder, label }: any) {
+  const dispatch = useDispatch()
+  const impNumber   = useAppSelector(state=> state.impNumber)
   return (
     <div>
       <div className="flex justify-between text-xs font-bold">
@@ -7,7 +14,7 @@ function InputNumber({ placeholder, label, impNumber, setImpNumber }: any) {
       </div>
       <input
         value={impNumber}
-        onChange={(e) => setImpNumber(e.target.value)}
+        onChange={(e) => dispatch(setImpNumber(e.target.value))}
         type="number"
         required
         placeholder={placeholder}
