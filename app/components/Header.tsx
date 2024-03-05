@@ -82,7 +82,7 @@ function Header() {
           </svg>
           <div
             className={`text-[11px] px-1 bg-[#D87D4A] rounded-full absolute -right-1 -top-3 ${
-              products.length > 1
+              products.length && products.length > 1
                 ? "block"
                 : products[0].img
                 ? "block"
