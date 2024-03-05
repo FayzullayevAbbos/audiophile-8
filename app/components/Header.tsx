@@ -89,7 +89,11 @@ function Header() {
                 : "hidden"
             }`}
           >
-            {products.length - 1}
+            {products.length > 1
+              ? products.length - 1
+              : products[0].img
+              ? products.length
+              : ""}
           </div>
         </div>
       </div>
