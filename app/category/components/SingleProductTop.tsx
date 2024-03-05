@@ -76,7 +76,7 @@ function SingleProductTop({ product }: { product: SingleProduct[] }) {
                 <div className="flex w-5/12 bg-content-color font-bold">
                   <div
                     className="flex-1 flex justify-center items-center text-secondary-color cursor-pointer hover:text-accent-color"
-                    onClick={() => (itemCount > 1 ? setCount(count - 1) : "")}
+                    onClick={() => (count > 1 ? setCount(count - 1) : "")}
                   >
                     -
                   </div>
